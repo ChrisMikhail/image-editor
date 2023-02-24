@@ -1,18 +1,34 @@
 import tkinter as tk
 from tkinter import *
-from tkinter import filedialog
-from PIL import ImageTk, Image
 import functions
+import MouseTracker
 
+
+# Window
 window = tk.Tk()
 window.geometry("900x500")
 window.title("Image Editor")
 window.configure(bg='#252525')
-canvas = Canvas(window, width=725, height=425).place(x=85, y=60)
 
+
+# Canvas
+canvas = tk.Canvas(window, width=725, height=425)
+canvas.pack(fill="both", expand=True)
+
+# Title
 title = Label(window, text="Image Editor", bg="#252525", font=("bold", 30), fg="white")
 title.pack()
-Button(window, text= "Select an Image", bg="#252525", fg="white", command=functions.open_file).place(x=405, y=242.5)
 
+
+# Buttons
+selectImg = Button(window, text= "Select an Image", bg="#252525", fg="white", command=functions.open_file)
+selectImg.pack()
+
+draw = Button(window, text= "Draw", bg="#252525", fg="white", command=quit)
+draw.pack()
+
+tracker = MouseTracker.MouseTracker(canvas)
+window.bind("<Configure>", functions.resize_canvas)
 window.mainloop()
+
 
