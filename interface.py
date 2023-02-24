@@ -15,6 +15,7 @@ window.update_idletasks()
 # Canvas
 canvas = tk.Canvas(window, width=725, height=425)
 canvas.pack(fill="both", expand=True)
+tracker = MouseTracker.MouseTracker(canvas)
 
 
 # Title
@@ -33,7 +34,6 @@ eraseAll = Button(window, text= "Erase All", bg="#252525", fg="white", command=f
 eraseAll.pack(padx=3, side=tk.LEFT)
 
 
-tracker = MouseTracker.MouseTracker(canvas)
 window.bind("<Configure>", functions.resize_canvas)
 window.mainloop()
 

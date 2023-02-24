@@ -8,7 +8,7 @@ class MouseTracker:
         interface.canvas.bind("<Motion>", self.update_mouse_position)
         interface.canvas.bind("<ButtonPress-1>", self.mouse_down)
         interface.canvas.bind("<ButtonRelease-1>", self.mouse_up)
-        interface.window.bind("<Return>", self.enable_draw)
+        interface.window.bind("<Return>", self.toggle_draw)
 
 
     def update_mouse_position(self, event):
@@ -23,5 +23,5 @@ class MouseTracker:
     def mouse_up(self, event):
         self.mouse_pressed = False
 
-    def enable_draw(self, event):
-        self.draw_enabled = True
+    def toggle_draw(self, event):
+        self.draw_enabled = not self.draw_enabled
