@@ -24,7 +24,7 @@ title.pack()
 selectImg = Button(window, text= "Select an Image", bg="#252525", fg="white", command=functions.open_file)
 selectImg.pack()
 
-draw = Button(window, text= "Draw", bg="#252525", fg="white", command=quit)
+draw = Button(window, text= "Erase All", bg="#252525", fg="white", command="")
 draw.pack()
 
 tracker = MouseTracker.MouseTracker(canvas)
