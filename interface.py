@@ -3,7 +3,6 @@ from tkinter import *
 import functions
 import MouseTracker
 
-# drawEnabled = True
 
 # Window
 window = tk.Tk()

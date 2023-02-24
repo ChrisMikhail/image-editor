@@ -1,5 +1,4 @@
 import interface
-import functions
 
 class MouseTracker:
     def __init__(self, parent):
@@ -13,7 +12,6 @@ class MouseTracker:
 
 
     def update_mouse_position(self, event):
-        # print(interface.drawEnabled)
         if self.mouse_pressed and self.draw_enabled:
             self.mouse_x, self.mouse_y = event.x, event.y
             # Drawing feature will be here temporarily
