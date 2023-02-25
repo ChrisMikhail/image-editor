@@ -30,8 +30,17 @@ selectImg.pack(padx=3, side=tk.LEFT)
 draw = Button(window, text= "Draw", bg="#252525", fg="white", command=functions.sim_enter)
 draw.pack(padx=3, side=tk.LEFT)
 
+# eraser = Button(window, text= "Erase", bg="#252525", fg="white", command="")
+# eraser.pack(padx=3, side=tk.LEFT)
+
 eraseAll = Button(window, text= "Erase All", bg="#252525", fg="white", command=functions.erase_all)
 eraseAll.pack(padx=3, side=tk.LEFT)
+
+# addText = Button(window, text= "Add Text", bg="#252525", fg="white", command=functions.type_words)
+# addText.pack(padx=3, side=tk.LEFT)
+
+# downloadImg = Button(window, text= "Download", bg="#252525", fg="white", command="")
+# downloadImg.pack(padx=3, side=tk.LEFT)
 
 
 window.bind("<Configure>", functions.resize_canvas)
