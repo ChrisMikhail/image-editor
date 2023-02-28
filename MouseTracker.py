@@ -22,14 +22,13 @@ class MouseTracker:
     def update_mouse_position(self, event):
         self.mouse_x, self.mouse_y = event.x, event.y
         if self.mouse_pressed and self.draw_enabled:
-            interface.canvas.create_oval(self.mouse_x, self.mouse_y, self.mouse_x+13, self.mouse_y+13, fill=self.fill_colour, outline=self.fill_colour)
+            interface.canvas.create_oval(self.mouse_x - 7, self.mouse_y - 7, self.mouse_x + 7, self.mouse_y + 7, fill=self.fill_colour, outline=self.fill_colour)
 
         if self.mouse_pressed and self.erase_enabled:
-            selected_oval = interface.canvas.find_overlapping(event.x - 5, event.y - 5, event.x + 5, event.y + 5)
+            selected_oval = interface.canvas.find_enclosed(self.mouse_x - 18, self.mouse_y - 18, self.mouse_x + 18, self.mouse_y + 18)
             if len(selected_oval) > 0:
-                closest_oval = selected_oval[0]
-                if interface.canvas.type(closest_oval) == 'oval':
-                    interface.canvas.delete(closest_oval)
+                if interface.canvas.type(selected_oval[0]) == 'oval':
+                    interface.canvas.delete(selected_oval[0])
 
     def mouse_down(self, event):
         self.mouse_pressed = True
