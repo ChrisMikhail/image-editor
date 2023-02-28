@@ -1,23 +1,35 @@
 import interface
 
-
 class MouseTracker:
     def __init__(self, parent):
         self.mouse_x, self.mouse_y = 0, 0
         self.mouse_pressed = False
         self.draw_enabled = False
         self.erase_enabled = False
+        self.fill_colour = 'black'
         interface.canvas.bind("<Motion>", self.update_mouse_position)
         interface.canvas.bind("<ButtonPress-1>", self.mouse_down)
         interface.canvas.bind("<ButtonRelease-1>", self.mouse_up)
-        interface.window.bind("<Return>", self.toggle_draw)
+        interface.window.bind("<Control-p>", self.toggle_draw)
+        interface.window.bind("<Control-e>", self.toggle_erase)
+        interface.window.bind("<Control-R>", lambda event: self.change_colour(event, 'red'))
+        interface.window.bind("<Control-G>", lambda event: self.change_colour(event, 'green'))
+        interface.window.bind("<Control-B>", lambda event: self.change_colour(event, 'blue'))
+        interface.window.bind("<Control-b>", lambda event: self.change_colour(event, 'black'))
+
+
 
     def update_mouse_position(self, event):
         self.mouse_x, self.mouse_y = event.x, event.y
         if self.mouse_pressed and self.draw_enabled:
-            # Drawing feature will be here temporarily
-            interface.canvas.create_oval(
-                self.mouse_x, self.mouse_y, self.mouse_x+15, self.mouse_y+15, fill='black')
+            interface.canvas.create_oval(self.mouse_x, self.mouse_y, self.mouse_x+13, self.mouse_y+13, fill=self.fill_colour, outline=self.fill_colour)
+
+        if self.mouse_pressed and self.erase_enabled:
+            selected_oval = interface.canvas.find_overlapping(event.x - 5, event.y - 5, event.x + 5, event.y + 5)
+            if len(selected_oval) > 0:
+                closest_oval = selected_oval[0]
+                if interface.canvas.type(closest_oval) == 'oval':
+                    interface.canvas.delete(closest_oval)
 
     def mouse_down(self, event):
         self.mouse_pressed = True
@@ -29,5 +41,22 @@ class MouseTracker:
         self.draw_enabled = not self.draw_enabled
         if self.draw_enabled != False:
             interface.canvas.config(cursor="target")
+            self.erase_enabled = False
         else:
             interface.canvas.config(cursor="arrow")
+
+
+    def toggle_erase(self, event):
+        self.erase_enabled = not self.erase_enabled
+        if self.erase_enabled != False:
+            interface.canvas.config(cursor="star")
+            self.draw_enabled = False
+        else:
+            interface.canvas.config(cursor="arrow")
+
+
+    def change_colour(self, event, colour):
+        self.fill_colour = colour
+        self.draw_enabled = True
+        self.erase_enabled = False
+        interface.canvas.config(cursor="target")

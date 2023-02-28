@@ -1,9 +1,7 @@
 from tkinter import *
 from tkinter import filedialog
-from PIL import ImageTk, Image
+from PIL import ImageTk, Image, ImageDraw
 import interface
-import tkinter as tk
-
 
 
 def open_file():
@@ -22,10 +20,16 @@ def erase_all():
     interface.canvas.delete("all")
 
 
-def sim_enter():
-    interface.window.event_generate('<Return>')
-
-
-# def type_words():
-#     box = tk.Entry(interface.canvas)
-    
+# Simulate keyboard events
+def sim_draw():
+    interface.window.event_generate('<Control-p>')
+def sim_erase():
+    interface.window.event_generate('<Control-e>')
+def sim_red():
+    interface.window.event_generate('<Control-R>')
+def sim_green():
+    interface.window.event_generate('<Control-G>')
+def sim_blue():
+    interface.window.event_generate('<Control-B>')
+def sim_black():
+    interface.window.event_generate('<Control-b>')
