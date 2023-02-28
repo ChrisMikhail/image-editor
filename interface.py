@@ -10,6 +10,7 @@ window.geometry("900x500")
 window.title("Image Editor")
 window.configure(bg='#252525')
 window.update_idletasks() 
+window.bind("<Configure>", functions.resize_canvas)
 
 
 # Canvas
@@ -47,7 +48,6 @@ blue.pack(padx=3, pady=5, side=tk.LEFT)
 # downloadImg.pack(padx=3, side=tk.LEFT)
 
 
-window.bind("<Configure>", functions.resize_canvas)
 window.mainloop()
 
 
