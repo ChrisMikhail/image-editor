@@ -19,11 +19,9 @@ class MouseTracker:
         interface.window.bind("<Control-b>", lambda event: self.change_colour(event, 'black'))
 
 
-
-
     def update_mouse_position(self, event):
-
         self.mouse_x, self.mouse_y = event.x, event.y
+
         if self.mouse_pressed and self.draw_enabled:
             interface.canvas.create_oval(self.mouse_x - 7, self.mouse_y - 7, self.mouse_x + 7, self.mouse_y + 7, fill=self.fill_colour, outline=self.fill_colour)
 
@@ -40,15 +38,15 @@ class MouseTracker:
                 interface.canvas.move(selected_img, dx, dy)
                 self.startxy = (event.x, event.y)
 
-        
-
 
     def mouse_down(self, event):
         self.mouse_pressed = True
         self.startxy = (event.x, event.y)
 
+
     def mouse_up(self, event):
         self.mouse_pressed = False
+
 
     def toggle_draw(self, event):
         self.draw_enabled = not self.draw_enabled

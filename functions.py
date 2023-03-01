@@ -1,6 +1,5 @@
-from tkinter import *
 from tkinter import filedialog
-from PIL import ImageTk, Image, ImageDraw
+from PIL import ImageTk, Image
 import interface
 
 
@@ -9,11 +8,11 @@ images = []
 
 def open_file():
     filename = filedialog.askopenfilename(initialdir="/", title="Select An Image", filetypes=(("jpeg files", "*.jpg"), ("png files", "*.png")))
-    my_image = ImageTk.PhotoImage(Image.open(filename))
-    images.append(my_image)
-    chosen_img = interface.canvas.create_image(0, 0, image=my_image, anchor="nw")
-    interface.canvas.image = chosen_img
-    # print(interface.canvas.type(chosen_img))
+    if len(filename) > 1:
+        my_image = ImageTk.PhotoImage(Image.open(filename))
+        images.append(my_image)
+        chosen_img = interface.canvas.create_image(0, 0, image=my_image, anchor="nw")
+        interface.canvas.image = chosen_img
 
 
 def resize_canvas(event):
