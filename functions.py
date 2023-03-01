@@ -4,12 +4,16 @@ from PIL import ImageTk, Image, ImageDraw
 import interface
 
 
+images = []
+
+
 def open_file():
     filename = filedialog.askopenfilename(initialdir="/", title="Select An Image", filetypes=(("jpeg files", "*.jpg"), ("png files", "*.png")))
     my_image = ImageTk.PhotoImage(Image.open(filename))
-    image_id = interface.canvas.create_image(0, 0, image=my_image, anchor="nw")
-    interface.canvas.lower(image_id)
-    interface.canvas.image = my_image
+    images.append(my_image)
+    chosen_img = interface.canvas.create_image(0, 0, image=my_image, anchor="nw")
+    interface.canvas.image = chosen_img
+    # print(interface.canvas.type(chosen_img))
 
 
 def resize_canvas(event):

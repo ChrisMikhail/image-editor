@@ -14,7 +14,7 @@ window.bind("<Configure>", functions.resize_canvas)
 
 
 # Canvas
-canvas = tk.Canvas(window, width=725, height=425)
+canvas = tk.Canvas(window, width=725, height=425, bg="#f4f3ee")
 canvas.pack(fill="both", expand=True)
 tracker = MouseTracker(canvas)
 
