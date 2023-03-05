@@ -6,6 +6,10 @@ class MouseTracker:
         self.mouse_pressed = False
         self.draw_enabled = False
         self.erase_enabled = False
+        self.toggle_image_pressed = False
+        self.image_selected = ()
+        self.highlight_img = 0
+        self.selected_img = ()
         self.fill_colour = 'black'
         self.startxy = (0, 0)
         interface.canvas.bind("<Motion>", self.update_mouse_position)
@@ -17,6 +21,9 @@ class MouseTracker:
         interface.window.bind("<Control-G>", lambda event: self.change_colour(event, 'green'))
         interface.window.bind("<Control-B>", lambda event: self.change_colour(event, 'blue'))
         interface.window.bind("<Control-b>", lambda event: self.change_colour(event, 'black'))
+        interface.canvas.bind("<ButtonPress-3>", self.img_select)
+        interface.window.bind("<BackSpace>", self.delete_img)
+
 
 
     def update_mouse_position(self, event):
@@ -26,18 +33,22 @@ class MouseTracker:
             interface.canvas.create_oval(self.mouse_x - 7, self.mouse_y - 7, self.mouse_x + 7, self.mouse_y + 7, fill=self.fill_colour, outline=self.fill_colour)
 
         if self.mouse_pressed and self.erase_enabled:
-            selected_oval = interface.canvas.find_enclosed(self.mouse_x - 18, self.mouse_y - 18, self.mouse_x + 18, self.mouse_y + 18)
+            selected_oval = interface.canvas.find_enclosed(self.mouse_x - 20, self.mouse_y - 20, self.mouse_x + 20, self.mouse_y + 20)
             if len(selected_oval) > 0:
                 if interface.canvas.type(selected_oval[0]) == 'oval':
                     interface.canvas.delete(selected_oval[0])
 
         if self.mouse_pressed and (self.erase_enabled == False) and (self.draw_enabled == False):
-            selected_img = interface.canvas.find_overlapping(self.mouse_x, self.mouse_y, self.mouse_x, self.mouse_y)
-            if interface.canvas.type(selected_img) == 'image':
+            self.selected_img = interface.canvas.find_overlapping(self.mouse_x, self.mouse_y, self.mouse_x, self.mouse_y)
+            if interface.canvas.type(self.selected_img) == 'image':
+                self.image_selected = True
                 dx, dy = event.x - self.startxy[0], event.y - self.startxy[1]
-                interface.canvas.move(selected_img, dx, dy)
+                interface.canvas.move(self.selected_img, dx, dy)
+                interface.canvas.move(self.highlight_img, dx, dy)
                 self.startxy = (event.x, event.y)
-
+            else:
+                self.image_selected = False
+            
 
     def mouse_down(self, event):
         self.mouse_pressed = True
@@ -72,3 +83,24 @@ class MouseTracker:
         self.erase_enabled = False
         interface.canvas.config(cursor="target")
 
+
+    def img_select(self, event):
+        if self.image_selected:
+                if self.selected_img == interface.canvas.find_closest(self.mouse_x, self.mouse_y)[0]:
+                    interface.canvas.delete('selected')
+                    self.toggle_image_pressed = False
+                else:
+                    self.toggle_image_pressed = True
+                    self.selected_img = interface.canvas.find_closest(self.mouse_x, self.mouse_y)[0]
+                    bbox = interface.canvas.bbox(self.selected_img)
+                    interface.canvas.delete('selected')
+                    self.highlight_img = interface.canvas.create_rectangle(bbox, width=3, outline='black', tags='selected')
+
+
+    def delete_img(self, event):
+        if self.toggle_image_pressed:
+            interface.canvas.delete(self.selected_img)
+            interface.canvas.delete(self.highlight_img)
+            self.toggle_image_pressed = False
+
+        
