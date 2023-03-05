@@ -85,16 +85,15 @@ class MouseTracker:
 
 
     def img_select(self, event):
-        if self.image_selected:
-                if self.selected_img == interface.canvas.find_closest(self.mouse_x, self.mouse_y)[0]:
-                    interface.canvas.delete('selected')
-                    self.toggle_image_pressed = False
-                else:
-                    self.toggle_image_pressed = True
-                    self.selected_img = interface.canvas.find_closest(self.mouse_x, self.mouse_y)[0]
-                    bbox = interface.canvas.bbox(self.selected_img)
-                    interface.canvas.delete('selected')
-                    self.highlight_img = interface.canvas.create_rectangle(bbox, width=3, outline='black', tags='selected')
+        if self.selected_img == interface.canvas.find_closest(self.mouse_x, self.mouse_y)[0]:
+            interface.canvas.delete('selected')
+            self.toggle_image_pressed = False
+        else:
+            self.toggle_image_pressed = True
+            self.selected_img = interface.canvas.find_closest(self.mouse_x, self.mouse_y)[0]
+            bbox = interface.canvas.bbox(self.selected_img)
+            interface.canvas.delete('selected')
+            self.highlight_img = interface.canvas.create_rectangle(bbox, width=3, outline='black', tags='selected')
 
 
     def delete_img(self, event):
