@@ -10,6 +10,7 @@ This program uses Tkinter and allows users to:
 Keybinds:
 - Control + o: Select an image (jpg or png)
 - Control + p: Toggle draw mode
+- Control + e: Toggle erase mode
 - Control + Shift + r: Change colour to red
 - Control + Shift + g: Change colour to green
 - Control + Shift + b: Change colour to blue
