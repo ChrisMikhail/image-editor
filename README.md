@@ -1,6 +1,6 @@
 # image-editor
 
-This program uses Tkinter and allows users to:
+This program allows users to:
 - Open, select, move and delete images
 - Draw, erase, and change colours of the brush                                           
 - Clear Canvas
