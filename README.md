@@ -1,4 +1,4 @@
-# image-editor
+# py-paint
 
 This program allows users to:
 - Open, select, move and delete images
