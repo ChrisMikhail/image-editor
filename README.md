@@ -5,8 +5,6 @@ This program uses Tkinter and allows users to:
 - Draw, erase, and change colours of the brush
 - Clear Canvas
 
-<img width="673" alt="image" src="https://user-images.githubusercontent.com/112285076/221758770-337b23ed-0a05-49d4-af6a-3493792460e0.png">
-
 Keybinds:
 - Control + o: Select an image (jpg or png)
 - Control + p: Toggle draw mode
