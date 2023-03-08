@@ -102,4 +102,3 @@ class MouseTracker:
             interface.canvas.delete(self.highlight_img)
             self.toggle_image_pressed = False
 
-        
