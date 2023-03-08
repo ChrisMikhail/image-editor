@@ -2,8 +2,10 @@
 
 This program uses Tkinter and allows users to:
 - Open, select, move and delete images
-- Draw, erase, and change colours of the brush
+- Draw, erase, and change colours of the brush                                           
 - Clear Canvas
+
+![image](https://user-images.githubusercontent.com/112285076/223603501-9c6af1b7-cfd9-4ab8-8673-dfdfde1211a2.png)
 
 Keybinds:
 - Control + o: Select an image (jpg or png)
