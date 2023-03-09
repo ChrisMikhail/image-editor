@@ -2,7 +2,7 @@
 
 This program allows users to:
 - Open, select, move and delete images
-- Draw, erase, change colours, and adjust size of the brush                                           
+- Draw, erase, change colours, and size of the brush                                           
 - Clear Canvas
 
 <img width="676" alt="image" src="https://user-images.githubusercontent.com/112285076/224048461-c6599b99-d3b8-4d40-aac9-0eceb9ffe47d.png">
