@@ -5,7 +5,7 @@ This program allows users to:
 - Draw, erase, and change colours of the brush                                           
 - Clear Canvas
 
-![image](https://user-images.githubusercontent.com/112285076/223603501-9c6af1b7-cfd9-4ab8-8673-dfdfde1211a2.png)
+<img width="676" alt="image" src="https://user-images.githubusercontent.com/112285076/224048461-c6599b99-d3b8-4d40-aac9-0eceb9ffe47d.png">
 
 Keybinds:
 - Control + o: Select an image (jpg or png)
