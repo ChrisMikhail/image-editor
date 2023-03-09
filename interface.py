@@ -7,7 +7,7 @@ from MouseTracker import MouseTracker
 # Window
 window = tk.Tk()
 window.geometry("900x500")
-window.title("Image Editor")
+window.title("Python Paint")
 window.configure(bg='#252525')
 window.bind("<Configure>", functions.resize_canvas)
 window.bind("<Control-o>", functions.open_file)
@@ -43,5 +43,11 @@ green.pack(padx=3, pady=5, side=tk.LEFT)
 blue = Button(window, bg="blue",  width=2, command=functions.sim_blue)
 blue.pack(padx=3, pady=5, side=tk.LEFT)
 
+#Slider
+brushSizeValue = IntVar()  
+brushSize = Scale(window, from_=5, to=20, orient="horizontal", bg="#252525", fg="white", length=200, width=15, highlightthickness=0, showvalue=0, variable=brushSizeValue, command=functions.update_brush_size)
+brushSize.pack(padx=3, pady=5, side=tk.LEFT)
+max_label = Label(window, text=f"Brush Size: {brushSizeValue.get()}", bg="#252525", fg="white")
+max_label.pack(padx=3, pady=5, side=tk.LEFT)
 
 window.mainloop()

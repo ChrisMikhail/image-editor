@@ -30,10 +30,10 @@ class MouseTracker:
         self.mouse_x, self.mouse_y = event.x, event.y
 
         if self.mouse_pressed and self.draw_enabled:
-            interface.canvas.create_oval(self.mouse_x - 7, self.mouse_y - 7, self.mouse_x + 7, self.mouse_y + 7, fill=self.fill_colour, outline=self.fill_colour)
+            interface.canvas.create_oval(self.mouse_x - interface.brushSizeValue.get(), self.mouse_y - interface.brushSizeValue.get(), self.mouse_x + interface.brushSizeValue.get(), self.mouse_y + interface.brushSizeValue.get(), fill=self.fill_colour, outline=self.fill_colour)
 
         if self.mouse_pressed and self.erase_enabled:
-            selected_oval = interface.canvas.find_enclosed(self.mouse_x - 20, self.mouse_y - 20, self.mouse_x + 20, self.mouse_y + 20)
+            selected_oval = interface.canvas.find_enclosed(self.mouse_x - 25 - interface.brushSizeValue.get(), self.mouse_y - 25 - interface.brushSizeValue.get(), self.mouse_x + 25 + interface.brushSizeValue.get(), self.mouse_y + 25 + interface.brushSizeValue.get())
             if len(selected_oval) > 0:
                 if interface.canvas.type(selected_oval[0]) == 'oval':
                     interface.canvas.delete(selected_oval[0])

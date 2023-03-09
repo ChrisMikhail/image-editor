@@ -39,3 +39,7 @@ def sim_blue():
     interface.window.event_generate('<Control-B>')
 def sim_black():
     interface.window.event_generate('<Control-b>')
+
+def update_brush_size(val):
+    interface.brushSizeValue.set(int(val))
+    interface.max_label.config(text=f"Brush Size: {interface.brushSizeValue.get()}")
